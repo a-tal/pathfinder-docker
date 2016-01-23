@@ -15,9 +15,10 @@ RUN apt-get update -qqy \
 && apt-get install -qqy php7.0 php7.0-cli php7.0-mcrypt php7.0-intl php7.0-mysql php7.0-curl php7.0-gd mysql-client-5.6 mysql-server-5.6
 
 ARG MYSQL_DUMP_HOST=https://www.fuzzwork.co.uk/dump
+ARG GIT_BRANCH=master
 RUN curl -L $MYSQL_DUMP_HOST/mysql-latest.tar.bz2 > /tmp/mysql-latest.tar.bz2 \
 && rm -rf /var/www/html \
-&& git clone https://github.com/exodus4d/pathfinder.git /var/www/html \
+&& git clone -b $GIT_BRANCH --single-branch https://github.com/exodus4d/pathfinder.git /var/www/html \
 && chown -R www-data:www-data /var/www/html
 
 COPY start_mysql.sh /usr/local/bin/

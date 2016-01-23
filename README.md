@@ -4,11 +4,16 @@ This repo will build pathfinder (https://github.com/exodus4d/pathfinder) as a do
 
 Batteries included.
 
-To build:
+## Building
 
 `docker build -t pathfinder .`
 
-To run:
+## Optional build-args
+
+* `MYSQL_DUMP_HOST`: a URL that's hosting mysql-latest.tar.bz2, default is `https://www.fuzzwork.co.uk/dump`
+* `GIT_BRANCH`: what branch to clone and build from https://github.com/exodus4d/pathfinder, default is `master`
+
+## Running
 
 ```
 docker run -d --name=pathfinder \
@@ -21,5 +26,3 @@ pathfinder
 ```
 
 On first launch, go to `http://your_docker_host:8080/setup` run the db setup and fix any table errors if you run into any (I was, but the web ui could fix them...)
-
-Also, you might have to `docker exec` to alter your database if you're having trouble importing an api key (https://github.com/exodus4d/pathfinder/issues/86)
